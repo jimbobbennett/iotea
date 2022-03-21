@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  grafana:
+    image: grafana/grafana-oss
+    ports:
+      - "8080:3000"
+    volumes:
+      - /opt/grafana:/var/lib/grafana
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-azure-data-explorer-datasource
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
